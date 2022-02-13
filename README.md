@@ -48,6 +48,7 @@ add optional larger result buttons:
 You can deploy this bot anywhere.
 
 <details><summary>Deploy to Heroku</summary>
+[![name](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Jackandoggy/0)
 <p>
 <br>
 <a href="https://telegram.dog/XTZ_HerokuBot?start=am9zcHJvamVjdHMvdGdtb3ZpZWJvdCBtYXN0ZXI">
