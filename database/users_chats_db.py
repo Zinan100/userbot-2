@@ -1,6 +1,6 @@
 # https://github.com/odysseusmax/animated-lamp/blob/master/bot/database/database.py
 import motor.motor_asyncio
-from info import DATABASE_NAME, DATABASE_URI, IMDB, IMDB_TEMPLATE, MELCOW_NEW_USERS, P_TTI_SHOW_OFF, SINGLE_BUTTON, SPELL_CHECK_REPLY, PROTECT_CONTENT
+from info import DATABASE_NAME, DATABASE_URI, IMDB, IMDB_TEMPLATE, MELCOW_NEW_USERS, P_TTI_SHOW_OFF, SINGLE_BUTTON, SPELL_CHECK_REPLY, PROTECT_CONTENT, CUSTOM_FILE_CAPTION
 
 class Database:
     
@@ -114,7 +114,8 @@ class Database:
             'imdb': IMDB,
             'spell_check': SPELL_CHECK_REPLY,
             'welcome': MELCOW_NEW_USERS,
-            'template': IMDB_TEMPLATE
+            'template': IMDB_TEMPLATE,
+            'custom_caption': CUSTOM_FILE_CAPTION
         }
         chat = await self.grp.find_one({'id':int(id)})
         if chat:
@@ -139,7 +140,7 @@ class Database:
         return self.grp.find({})
 
 
-    async def get_db_size(self):
+    async def get_db_size(self): 
         return (await self.db.command("dbstats"))['dataSize']
 
 
