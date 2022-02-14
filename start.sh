@@ -6,7 +6,7 @@ else
   echo "Cloning Custom Repo from $UPSTREAM_REPO "
   git clone $UPSTREAM_REPO /0
 fi
-cd /imdb100
+cd /0
 pip freeze > requirements.txt
 echo "Starting Bot...."
 python3 bot.py
