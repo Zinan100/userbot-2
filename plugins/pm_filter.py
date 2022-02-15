@@ -452,6 +452,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             file_id=file_id,
             caption=f_caption,
             protect_content=True if ident == 'checksubp' else False
+        )
     elif query.data == "removebg":
         await query.message.edit_text(
             "**Select required mode**ㅤㅤㅤㅤ",
