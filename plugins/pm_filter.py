@@ -25,7 +25,6 @@ from database.autofilter_db import get_session
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
-from plugins.Sflix.genstr import generate_session
 
 from image.edit_1 import (  # pylint:disable=import-error
     bright,
@@ -78,10 +77,6 @@ BUTTONS = {}
 SPELL_CHECK = {}
 
 
-ERROR_MESSAGE = "Oops! An exception occurred! \n\n**Error** : {} " \
-            "\n\nPlease visit @TeamSflix if this message doesn't contain any " \
-            "sensitive information and you if want to report this as " \
-            "this error message is not being logged by us!"
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client,message):
@@ -457,18 +452,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             file_id=file_id,
             caption=f_caption,
             protect_content=True if ident == 'checksubp' else False
-        )
-    elif querry in ["pyrogram", "telethon"]:
-        await query.answer()
-        try:
-            if query == "pyrogram":
-                await generate_session(client, query.message)
-            else:
-                await generate_session(client,query.message, telethon=True)
-        except Exception as e:
-            print(traceback.format_exc())
-            print(e)
-            await query.message.reply(ERROR_MESSAGE.format(str(e)))
     elif query.data == "removebg":
         await query.message.edit_text(
             "**Select required mode**ㅤㅤㅤㅤ",
