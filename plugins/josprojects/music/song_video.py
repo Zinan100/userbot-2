@@ -248,7 +248,7 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(filters.command(["vsong", "video", "mp4"]))
+@Client.on_message(filters.command(["mp4"]))
 async def vsong(client, message: Message):
     urlissed = get_text(message)
     reply_id = message.reply_to_message.message_id if message.reply_to_message else message.message_id
