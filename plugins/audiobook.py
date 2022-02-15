@@ -45,7 +45,7 @@ async def pdf_to_text(bot, message):
                 
                 
            else :
-                await message.reply("Please Reply to PDF file")
+                await message.reply("Please Reply to PDF file😐")
  except Exception as error :
            print(error)
            await txt.delete()
