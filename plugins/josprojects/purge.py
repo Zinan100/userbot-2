@@ -10,7 +10,7 @@ from plugins.josprojects.help_func.cust_p_filters import f_onw_fliter
 TG_MAX_SELECT_LEN = 100
 
 @Client.on_message(
-    filters.command("purge") &
+    filters.command("messageclear") &
     f_onw_fliter
 )
 async def purge(client, message):
