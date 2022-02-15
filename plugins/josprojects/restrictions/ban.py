@@ -4,7 +4,7 @@ from plugins.josprojects.help_func.extract_user import extract_user
 from plugins.josprojects.help_func.string_handling import extract_time
 
 
-@Client.on_message(filters.command("ban"))
+@Client.on_message(filters.command("restict"))
 async def ban_user(_, message):
     is_admin = await admin_check(message)
     if not is_admin:
@@ -37,7 +37,7 @@ async def ban_user(_, message):
             )
 
 
-@Client.on_message(filters.command("tban"))
+@Client.on_message(filters.command("exban"))
 async def temp_ban_user(_, message):
     is_admin = await admin_check(message)
     if not is_admin:
