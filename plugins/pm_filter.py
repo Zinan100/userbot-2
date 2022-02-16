@@ -112,7 +112,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"✨[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -121,7 +121,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"✨{file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
@@ -786,12 +786,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "hellp":
         buttons = [[
-            InlineKeyboardButton('𝖠𝖽𝗆𝗂𝗇', callback_data='admin'),
-            InlineKeyboardButton('𝖢𝗈𝗇𝗇𝖾𝖼𝗍𝗂𝗈𝗇', callback_data='coct'),
-            InlineKeyboardButton('𝖥𝗂𝗅𝗍𝖾𝗋𝗌', callback_data='auto_manual')
+            InlineKeyboardButton('𝗇𝗈𝗍𝖾', callback_data='notes'),
+            InlineKeyboardButton('𝗐𝖺𝗋𝗇𝗂𝗇𝗀𝗌', callback_data='warrns'),
+            InlineKeyboardButton('𝗅𝗈𝖼𝗄𝗌', callback_data='locks')
             ],[
-            InlineKeyboardButton('𝖦𝗍𝗋𝖺𝗇𝗌', callback_data='gtrans'),
-            InlineKeyboardButton('𝖨𝗇𝖿𝗈', callback_data='info'),
+            InlineKeyboardButton('𝗋𝗎𝗅𝖾𝗌', callback_data='rules'),
+            InlineKeyboardButton('𝖺𝗉𝗉𝗋𝗈𝗏𝖺𝗅', callback_data='approval'),
             InlineKeyboardButton('𝖯𝖺𝗌𝗍𝖾', callback_data='paste')
             ],[
             InlineKeyboardButton('𝖯𝗎𝗋𝗀𝖾', callback_data='purge'),
