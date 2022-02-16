@@ -58,7 +58,8 @@ To Get Sticker ID
 A Module To Convert TEXT To Voice With Language Support
 
   ⭕ 𝙃𝙤𝙬 𝙏𝙤 𝙐𝙨𝙚
-◉ /tts :- Reply To Any TEXT Message With Language Code To Convert As Audio"""
+◉ /tts :- Reply To Any TEXT Message With Language Code To Convert As Audio
+◉ /stt :- Reply to a audio file to extract text from it"""
     URLSHORT_TXT = """➤ 𝐇𝐞𝐥𝐩: 𝖴𝗋𝗅 𝗌𝗁𝗈𝗋𝗍𝗇𝖾𝗋
 
 𝚃𝚑𝚒𝚜 𝚌𝚘𝚖𝚖𝚊𝚗𝚍 𝚑𝚎𝚕𝚙𝚜 𝚢𝚘𝚞 𝚝𝚘 𝚜𝚑𝚘𝚛𝚝 𝚊 𝚞𝚛𝚕 
