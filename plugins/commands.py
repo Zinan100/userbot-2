@@ -90,8 +90,9 @@ async def start(client, message):
             InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='hellp')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_text(
+        await message.reply_photo(
             text=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+            photo="https://telegra.ph/file/2fea81814bfa2b6a4b5d7.jpg",
             reply_markup=reply_markup
         )      
         return
