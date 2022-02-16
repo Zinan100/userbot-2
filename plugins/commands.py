@@ -30,7 +30,7 @@ BATCH_FILES = {}
 async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
         buttons = [[
-            InlineKeyboardButton('©️ 𝖴𝗉𝖽𝖺𝗍𝖾𝗌', url='https://t.me/SflixBots'),
+            InlineKeyboardButton('©️ 𝖴𝗉𝖽𝖺𝗍𝖾𝗌', url='https://t.me/check_this_channel'),
             InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', url=f"https://t.me/{temp.U_NAME}?start=help")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -48,7 +48,7 @@ async def start(client, message):
         buttons = [[
             InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Phil_Coulson_Sflix_bot?startgroup=true')
             ],[
-            InlineKeyboardButton('🔍 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
+            InlineKeyboardButton('🔍 Inline', switch_inline_query_current_chat=''),
             InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='hellp')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -86,7 +86,7 @@ async def start(client, message):
         buttons = [[
             InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Phil_Coulson_Sflix_bot?startgroup=true')
             ],[
-            InlineKeyboardButton('🔍 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
+            InlineKeyboardButton('🔍 Inline', switch_inline_query_current_chat=''),
             InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='hellp')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
