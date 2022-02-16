@@ -10,7 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
-@Client.on_message(filters.command('id'))
+@Client.on_message(filters.command('identity'))
 async def showid(client, message):
     chat_type = message.chat.type
     if chat_type == "private":
@@ -54,7 +54,7 @@ async def showid(client, message):
             quote=True
         )
 
-@Client.on_message(filters.command(["info", "whois"]))
+@Client.on_message(filters.command(["information"]))
 async def who_is(client, message):
     # https://github.com/SpEcHiDe/PyroGramBot/blob/master/pyrobot/plugins/admemes/whois.py#L19
     status_message = await message.reply_text(
@@ -127,7 +127,7 @@ async def who_is(client, message):
         )
     await status_message.delete()
 
-@Client.on_message(filters.command(["imdb", 'search']))
+@Client.on_message(filters.command(["search"]))
 async def imdb_search(client, message):
     if ' ' in message.text:
         k = await message.reply('Searching ImDB')
