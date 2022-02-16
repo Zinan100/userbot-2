@@ -76,7 +76,11 @@ A Module To Convert TEXT To Voice With Language Support
 
 ➤ 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬 𝐚𝐧𝐝 𝐔𝐬𝐚𝐠𝐞:
 
-➪ 𝖩𝗎𝗌𝗍 𝗌𝖾𝗇𝖽 𝗆𝖾 𝖺 𝗂𝗆𝖺𝗀𝖾 𝗍𝗈 𝖾𝖽𝗂𝗍 ✨"""
+❍ /edit reply to image : Open the image editor.
+❍ /logo Text: To make logo with your text (Random Pic).
+❍ /mmf Text : To writen in image or sitcker with your text.
+❍ /rmbg Reply To Image  : For remove background image.
+❍ /tiny Reply : To convert size to small in images."""
     WHOIS_TXT ="""𝙃𝙚𝙡𝙥 𝙁𝙤𝙧 𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙 𝘼𝙣𝙮 𝙑𝙞𝙙𝙚𝙤 𝙁𝙧𝙤𝙢 𝙔𝙏.
 
 • 𝘜𝘴𝘢𝘨𝘦
