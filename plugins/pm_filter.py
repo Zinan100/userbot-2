@@ -692,7 +692,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Phil_Coulson_Sflix_bot?startgroup=true')
             ],[
             InlineKeyboardButton('🔍 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='helpp')
+            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -776,7 +776,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
             InlineKeyboardButton("⌫", callback_data='start'),
             InlineKeyboardButton("📄 1/2", callback_data='help_pages'),
-            InlineKeyboardButton("⌦", callback_data='hellp')
+            InlineKeyboardButton("⌦", callback_data='help_twoo')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
