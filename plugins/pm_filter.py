@@ -816,8 +816,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[
             InlineKeyboardButton("𝖨𝗆𝖺𝗀𝖾", callback_data='image')
             ],[
-            InlineKeyboardButton("⌫", callback_data='start'),
-            InlineKeyboardButton("📄 1/2", callback_data='help_pages'),
+            InlineKeyboardButton("⌫", callback_data='help'),
+            InlineKeyboardButton("📄 2/2", callback_data='help_pages'),
             InlineKeyboardButton("⌦", callback_data='help_yet')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -838,60 +838,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             text=script.HELP_TXT.format(query.from_user.mention),
             reply_markup=reply_markup,
             parse_mode='html'
-        )
-    elif query.data == "helpp":
-        buttons = [[
-            InlineKeyboardButton('𝖠𝖽𝗆𝗂𝗇', callback_data='admin'),
-            InlineKeyboardButton('𝖢𝗈𝗇𝗇𝖾𝖼𝗍𝗂𝗈𝗇', callback_data='coct'),
-            InlineKeyboardButton('𝖥𝗂𝗅𝗍𝖾𝗋𝗌', callback_data='auto_manual')
-            ],[
-            InlineKeyboardButton('𝖦𝗍𝗋𝖺𝗇𝗌', callback_data='gtrans'),
-            InlineKeyboardButton('𝖨𝗇𝖿𝗈', callback_data='info'),
-            InlineKeyboardButton('𝖯𝖺𝗌𝗍𝖾', callback_data='paste')
-            ],[
-            InlineKeyboardButton('𝖯𝗎𝗋𝗀𝖾', callback_data='purge'),
-            InlineKeyboardButton('𝖱𝖾𝗌𝗍𝗋𝖾𝖼', callback_data='restric'),
-            InlineKeyboardButton('𝖨𝖬𝖣𝖡', callback_data='search')
-            ],[
-            InlineKeyboardButton('𝖳𝗀𝗋𝖺𝗉𝗁', callback_data='tgraph'),
-            InlineKeyboardButton('𝖲𝗈𝗇𝗀', callback_data='song'),
-            InlineKeyboardButton('𝖩𝗌𝗈𝗇', callback_data='json')
-            ],[
-            InlineKeyboardButton('𝖯𝗂𝗇', callback_data='pin'),
-            InlineKeyboardButton("𝖳𝗑𝗍-𝖲𝗉𝖼𝗁", callback_data='sheech'),
-            InlineKeyboardButton("𝖲𝗁𝗈𝗋𝗍-𝖴𝗋𝗅", callback_data='urlshort')
-            ],[
-            InlineKeyboardButton("𝖵𝗂𝖽𝖾𝗈", callback_data='whois'),
-            InlineKeyboardButton("𝖸𝗍-𝖳𝗁𝗎𝗆𝖻", callback_data='ytthumb'),
-            InlineKeyboardButton("𝖢𝗈𝗏𝗂𝖽𝖾", callback_data='corona')
-            ],[
-            InlineKeyboardButton("𝖲𝗍𝗂𝖼𝗄𝖾𝗋-𝖨𝖣", callback_data='sticker'),
-            InlineKeyboardButton("𝖱𝖾𝗉𝗈𝗋𝗍𝗌", callback_data='report'),
-            InlineKeyboardButton("𝖠𝗎𝖽𝗂𝗈𝖻𝗈𝗈𝗄", callback_data='abook')
-            ],[
-            InlineKeyboardButton("𝖨𝗆𝖺𝗀𝖾", callback_data='image')
-            ],[
-            InlineKeyboardButton("⌫", callback_data='start'),
-            InlineKeyboardButton("📄 1/2", callback_data='help_pages'),
-            InlineKeyboardButton("⌦", callback_data='help_yet')
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text="▢▢▢"
-        )
-        await query.message.edit_text(
-            text="▣▢▢"
-        )
-        await query.message.edit_text(
-            text="▣▣▢"
-        )
-        await query.message.edit_text(
-            text="▣▣▣"
-        ) 
-        await query.message.edit_text(
-            text=script.HELP_TXT.format(query.from_user.mention),
-            reply_markup=reply_markup,
-            parse_mode='html'
+ 
         )
     elif query.data == "sticker":
         buttons = [[
