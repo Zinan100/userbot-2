@@ -49,7 +49,7 @@ async def start(client, message):
             InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Clifford_robot?startgroup=true')
             ],[
             InlineKeyboardButton('🔍 Inline', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='hellp')
+            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
@@ -89,7 +89,7 @@ async def start(client, message):
             InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Clifford_robot?startgroup=true')
             ],[
             InlineKeyboardButton('🔍 Inline', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='hellp')
+            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
