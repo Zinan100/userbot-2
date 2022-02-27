@@ -821,19 +821,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton("⌦", callback_data='help_yet')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text="▢▢▢"
-        )
-        await query.message.edit_text(
-            text="▣▢▢"
-        )
-        await query.message.edit_text(
-            text="▣▣▢"
-        )
-        await query.message.edit_text(
-            text="▣▣▣"
-        )
-        await query.answer("𝖶𝖾𝗅𝖼𝗈𝗆𝖾 𝗍𝗈 𝗆𝗒 𝖧𝖾𝗅𝗉 𝗆𝗈𝖽𝗎𝗅𝖾")
+        await query.message.reply_chat_action("typing")
+        m=await query.message.reply_text("▣")
+        await query.message.reply_chat_action("typing")
+        n=await m.edit("▣▣")
+        await query.message.reply_chat_action("typing")
+        o=await n.edit("▣▣▣")
+        await asyncio.sleep(1)
+        await o.delete()
+        await query.message.reply_chat_action("typing")
         await query.message.edit_text(
             text=script.HELP_TXT.format(query.from_user.mention),
             reply_markup=reply_markup,
