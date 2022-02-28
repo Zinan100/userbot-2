@@ -75,6 +75,7 @@ from image.edit_5 import (  # pylint:disable=import-error
 
 BUTTONS = {}
 SPELL_CHECK = {}
+GET_FILE_CHANNLE = int(-1001651884699)
 
 
 
