@@ -29,7 +29,7 @@ logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
-GET_FILE_CHANNLE = int(-1001651884699)
+GET_FILE_CHANNLE = int(-1001636193054)
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client,message):
