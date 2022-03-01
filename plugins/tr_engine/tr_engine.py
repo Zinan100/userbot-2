@@ -10,7 +10,7 @@ from yaml import FullLoader
 from yaml import load as load_yml
 
 from info import ENABLED_LOCALES, LOGGER
-from plugins.database.lang_db import Langs
+from database.lang_db import Langs
 
 # Initialise
 LANG_LOCK = RLock()
