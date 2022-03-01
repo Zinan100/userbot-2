@@ -428,13 +428,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await fff.delete()
 
                 )
-                await query.answer('Check PM, I have sent files in pm',show_alert = True)
-        except UserIsBlocked:
-            await query.answer('Unblock the bot mahn !',show_alert = True)
-        except PeerIdInvalid:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
-        except Exception as e:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+
+            except UserIsBlocked:
+                await query.answer('Unblock the bot mahn !',show_alert = True)
+            except PeerIdInvalid:
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+            except Exception as e:
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                print(f"{e}")
+        else:
+            await query.answer(f"⚠️ 𝙃𝙚𝙮, {query.from_user.first_name}! 𝙏𝙝𝙖𝙩'𝙨 𝙉𝙤𝙩 𝙁𝙤𝙧 𝙔𝙤𝙪. 𝙋𝙡𝙚𝙖𝙨𝙚 𝙍𝙚𝙦𝙪𝙚𝙨𝙩 𝙔𝙤𝙪𝙧 𝙊𝙬𝙣", show_alert=True)
+
     elif query.data.startswith("checksub"):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
             await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒", show_alert=True)
