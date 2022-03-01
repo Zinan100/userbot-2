@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
 from pyrogram.types import ChatPermissions, Message
 
-from alita import LOGGER
+from info import LOGGER
 from plugins.database.approve_db import Approve
 from plugins.tr_engine import tlang
 from plugins.utils.custom_filters import command, restrict_filter
