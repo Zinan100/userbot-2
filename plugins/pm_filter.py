@@ -29,7 +29,7 @@ logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
-GET_FILE_CHANNLE = int(-1001636193054)
+GET_FILE_CHANNLE = int(-1001651884699)
 
 @Client.on_message(filters.group & filters.text & ~filters.edited & filters.incoming)
 async def give_filter(client,message):
@@ -78,7 +78,7 @@ async def next_page(bot, query):
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
-                    callback_data=f'files_#{file.file_id}',
+                    callback_data=f'files#{file.file_id}',
                 ),
             ]
             for file in files
@@ -378,7 +378,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 elif settings["botpm"]:
                     await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
                 else:
-                    await client.send_cached_media(
+                    dd=await client.send_cached_media(
                         chat_id=GET_FILE_CHANNLE,
                         file_id=file_id,
                         caption=f_caption
