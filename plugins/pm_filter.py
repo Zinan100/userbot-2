@@ -419,23 +419,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
             elif settings["botpm"]:
                 await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
                 return
-            else:
-                await client.send_cached_media(
-                    chat_id=GET_FILE_CHANNLE,
-                    file_id=file_id,
-                    caption=f_caption,
-                    protect_content=True if ident == "filep" else False
-                )
-                message = query.message.reply_to_message
-                buttons = [[
-                    InlineKeyboardButton("ＤＯＷＮＬＯＡＤ", url="https://t.me/+FcLZqo7aCJE1N2Vl")
-                    ],[
-                    InlineKeyboardButton("Error ⁉️ Join Here & Try", url="https://t.me/+FcLZqo7aCJE1N2Vl")
-                ]]
-                reply_markup = InlineKeyboardMarkup(buttons)
-                fff = await message.reply_text(text=script.ANYFILECAPTION_TXT.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption), reply_markup=reply_markup)
-                await asyncio.sleep(65)
-                await fff.delete()
+                else:
+                    await client.send_cached_media(
+                        chat_id=GET_FILE_CHANNLE,
+                        file_id=file_id,
+                        caption=f_caption
+                    )
+                    message = query.message.reply_to_message
+                    buttons = [[
+                        InlineKeyboardButton("ＤＯＷＮＬＯＡＤ", url=f"https://t.me/Phil_Files")
+                        ],[
+                        InlineKeyboardButton("𝖢𝗅𝗈𝗌𝖾 🗑️", callback_data='closefilemsg')
+                    ]]
+                    reply_markup = InlineKeyboardMarkup(buttons)
+                    fff = await message.reply_text(text=script.ANYFILECAPTION_TXT.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption), reply_markup=reply_markup)
+                    await asyncio.sleep(35)
+                    await fff.delete()
 
             except UserIsBlocked:
                 await query.answer('Unblock the bot mahn !',show_alert = True)
