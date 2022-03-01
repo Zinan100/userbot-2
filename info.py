@@ -37,6 +37,7 @@ AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # Command
 COMMAND_HAND_LER = environ.get("COMMAND_HAND_LER", "/")
+ENABLED_LOCALES = environ.get("ENABLED_LOCALES", "en")
 
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "")
