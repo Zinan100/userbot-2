@@ -75,7 +75,7 @@ from image.edit_5 import (  # pylint:disable=import-error
 
 BUTTONS = {}
 SPELL_CHECK = {}
-GET_FILE_CHANNLE = int(-1001651884699)
+GET_FILE_CHANNLE = int(-1001636193054)
 
 
 
@@ -184,8 +184,18 @@ async def advantage_spoll_choker(bot, query):
 
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
-    querry = query.data.lower()
-    if query.data == "close_data":
+    if query.data == "closefilemsg":
+        clicked = query.from_user.id
+        try:
+            typed = query.message.reply_to_message.from_user.id
+        except:
+            typed = query.from_user.id
+            pass
+        if int(clicked) == typed:
+            await query.message.delete()
+        else:
+            await query.answer("You Can't Close Others Results", show_alert=True)
+    elif query.data == "close_data":
         await query.message.delete()
         try:
             await query.message.reply_to_message.delete()
