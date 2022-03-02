@@ -10,14 +10,10 @@ from pyrogram.types import CallbackQuery, Message
 from database.disable_db import DISABLED_CMDS
 from plugins.tr_engine import tlang
 from plugins.utils.caching import ADMIN_CACHE, admin_cache_reload
-from info import BOT_USERNAME
+from info import BOT_USERNAME, SUDO_USERS, DEV_USERS, OWNER_ID, BOT_ID
 
 SUDO_LEVEL = set(SUDO_USERS + DEV_USERS + [int(OWNER_ID)])
 DEV_LEVEL = set(DEV_USERS + [int(OWNER_ID)])
-BOT_ID = int(5144694821)
-OWNER_ID = int(5164540391)
-DEV_USERS = int(5164540391)
-SUDO_USERS = int(5298113557)
 
 
 
