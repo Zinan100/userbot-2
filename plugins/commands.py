@@ -237,7 +237,7 @@ async def start(client, message):
         caption=f_caption,
         protect_content=True if pre == 'filep' else False,
         )
-                    
+    await message.delete()      
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
@@ -433,7 +433,7 @@ async def settings(client, message):
                     '✅ Yes' if settings["imdb"] else '❌ No',
                     callback_data=f'setgs#imdb#{settings["imdb"]}#{grp_id}',
                 ),
-            ],
+            ], 
             [
                 InlineKeyboardButton(
                     'Spell Check',
@@ -453,6 +453,9 @@ async def settings(client, message):
                     '✅ Yes' if settings["welcome"] else '❌ No',
                     callback_data=f'setgs#welcome#{settings["welcome"]}#{grp_id}',
                 ),
+            ],
+            [
+                InlineKeyboardButton("𝖢𝗅𝗈𝗌𝖾 🗑️", callback_data='closesettings')
             ],
         ]
 
