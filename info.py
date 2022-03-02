@@ -39,6 +39,10 @@ AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 COMMAND_HAND_LER = environ.get("COMMAND_HAND_LER", "/")
 ENABLED_LOCALES = environ.get("ENABLED_LOCALES", "en")
 BOT_USERNAME = environ.get("BOT_USERNAME", "@Clifford_robot")
+OWNER_ID = environ.get("OWNER_ID", "5164540391")
+DEV_USERS = environ.get("DEV_USERS", "5164540391")
+SUDO_USERS = environ.get("SUDO_USERS", "5298113557")
+BOT_ID = environ.get("BOT_ID", "5144694821")
 
 
 # MongoDB information
