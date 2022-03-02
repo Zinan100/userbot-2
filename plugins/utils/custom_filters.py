@@ -8,10 +8,19 @@ from pyrogram.filters import create
 from pyrogram.types import CallbackQuery, Message
 
 from database.disable_db import DISABLED_CMDS
+from plugins.tr_engine import tlang
 from plugins.utils.caching import ADMIN_CACHE, admin_cache_reload
+from plugins.vars import Config
 
-PREFIX_HANDLER = ["!", "/"]
-BOT_ID = int(2080723946)
+SUDO_LEVEL = set(SUDO_USERS + DEV_USERS + [int(OWNER_ID)])
+DEV_LEVEL = set(DEV_USERS + [int(OWNER_ID)])
+BOT_ID = int(5144694821)
+OWNER_ID = int(5164540391)
+DEV_USERS = int(5164540391)
+SUDO_USERS = int(5298113557)
+BOT_USERNAME = int(@Clifford_robot)
+
+
 
 def command(
     commands: Union[str, List[str]],
@@ -47,8 +56,8 @@ def command(
         if not text:
             return False
         regex = r"^[{prefix}](\w+)(@{bot_name})?(?: |$)(.*)".format(
-            prefix="|".join(escape(x) for x in PREFIX_HANDLER),
-            bot_name="",
+            prefix="|".join(escape(x) for x in Config.PREFIX_HANDLER),
+            bot_name=BOT_USERNAME,
         )
         matches = compile_re(regex).search(text)
         if matches:
@@ -100,6 +109,7 @@ def command(
         case_sensitive=case_sensitive,
     )
 
+
 async def bot_admin_check_func(_, __, m: Message or CallbackQuery):
     """Check if bot is Admin or not."""
 
@@ -133,6 +143,7 @@ async def bot_admin_check_func(_, __, m: Message or CallbackQuery):
 
     return False
 
+
 async def admin_check_func(_, __, m: Message or CallbackQuery):
     """Check if user is Admin or not."""
     if isinstance(m, CallbackQuery):
@@ -143,6 +154,10 @@ async def admin_check_func(_, __, m: Message or CallbackQuery):
 
     # Telegram and GroupAnonyamousBot
     if m.sender_chat:
+        return True
+
+    # Bypass the bot devs, sudos and owner
+    if m.from_user.id in SUDO_LEVEL:
         return True
 
     try:
@@ -163,5 +178,140 @@ async def admin_check_func(_, __, m: Message or CallbackQuery):
 
     return False
 
+
+async def owner_check_func(_, __, m: Message or CallbackQuery):
+    """Check if user is Owner or not."""
+    if isinstance(m, CallbackQuery):
+        m = m.message
+
+    if m.chat.type != "supergroup":
+        return False
+
+    # Bypass the bot devs, sudos and owner
+    if m.from_user.id in DEV_LEVEL:
+        return True
+
+    user = await m.chat.get_member(m.from_user.id)
+
+    if user.status == "creator":
+        status = True
+    else:
+        status = False
+        if user.status == "administrator":
+            msg = "You're an admin only, stay in your limits!"
+        else:
+            msg = "Do you think that you can execute owner commands?"
+        await m.reply_text(msg)
+
+    return status
+
+
+async def restrict_check_func(_, __, m: Message or CallbackQuery):
+    """Check if user can restrict users or not."""
+    if isinstance(m, CallbackQuery):
+        m = m.message
+
+    if m.chat.type != "supergroup":
+        return False
+
+    # Bypass the bot devs, sudos and owner
+    if m.from_user.id in DEV_LEVEL:
+        return True
+
+    user = await m.chat.get_member(m.from_user.id)
+
+    if user.can_restrict_members or user.status == "creator":
+        status = True
+    else:
+        status = False
+        await m.reply_text(tlang(m, "admin.no_restrict_perm"))
+
+    return status
+
+
+async def promote_check_func(_, __, m):
+    """Check if user can promote users or not."""
+    if isinstance(m, CallbackQuery):
+        m = m.message
+
+    if m.chat.type != "supergroup":
+        return False
+
+    # Bypass the bot devs, sudos and owner
+    if m.from_user.id in DEV_LEVEL:
+        return True
+
+    user = await m.chat.get_member(m.from_user.id)
+
+    if user.can_promote_members or user.status == "creator":
+        status = True
+    else:
+        status = False
+        await m.reply_text(tlang(m, "admin.promote.no_promote_perm"))
+
+    return status
+
+
+async def changeinfo_check_func(_, __, m):
+    """Check if user can change info or not."""
+    if isinstance(m, CallbackQuery):
+        m = m.message
+
+    if m.chat.type != "supergroup":
+        await m.reply_text("This command is made to be used in groups not in pm!")
+        return False
+
+    # Telegram and GroupAnonyamousBot
+    if m.sender_chat:
+        return True
+
+    # Bypass the bot devs, sudos and owner
+    if m.from_user.id in SUDO_LEVEL:
+        return True
+
+    user = await m.chat.get_member(m.from_user.id)
+
+    if user.can_change_info or user.status == "creator":
+        status = True
+    else:
+        status = False
+        await m.reply_text("You don't have: can_change_info permission!")
+
+    return status
+
+
+async def can_pin_message_func(_, __, m):
+    """Check if user can change info or not."""
+    if isinstance(m, CallbackQuery):
+        m = m.message
+
+    if m.chat.type != "supergroup":
+        await m.reply_text("This command is made to be used in groups not in pm!")
+        return False
+
+    # Telegram and GroupAnonyamousBot
+    if m.sender_chat:
+        return True
+
+    # Bypass the bot devs, sudos and owner
+    if m.from_user.id in SUDO_LEVEL:
+        return True
+
+    user = await m.chat.get_member(m.from_user.id)
+
+    if user.can_pin_messages or user.status == "creator":
+        status = True
+    else:
+        status = False
+        await m.reply_text("You don't have: can_pin_messages permission!")
+
+    return status
+
+
 admin_filter = create(admin_check_func)
+owner_filter = create(owner_check_func)
+restrict_filter = create(restrict_check_func)
+promote_filter = create(promote_check_func)
 bot_admin_filter = create(bot_admin_check_func)
+can_change_filter = create(changeinfo_check_func)
+can_pin_filter = create(can_pin_message_func)
