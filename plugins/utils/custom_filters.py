@@ -18,7 +18,7 @@ BOT_ID = int(5144694821)
 OWNER_ID = int(5164540391)
 DEV_USERS = int(5164540391)
 SUDO_USERS = int(5298113557)
-BOT_USERNAME = int(@Clifford_robot)
+BOT_USERNAME = @Clifford_robot
 
 
 
