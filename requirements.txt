@@ -48,5 +48,3 @@ heroku3
 dnspython
 psycopg2-binary
 cachetools==4.2.4
-yaml
-googletrans
