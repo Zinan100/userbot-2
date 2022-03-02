@@ -12,7 +12,6 @@ from plugins.tr_engine import tlang
 from plugins.utils.caching import ADMIN_CACHE, admin_cache_reload
 from info import BOT_USERNAME, SUDO_USERS, DEV_USERS, OWNER_ID, BOT_ID
 
-SUDO_LEVEL = set(SUDO_USERS + DEV_USERS + [int(OWNER_ID)])
 DEV_LEVEL = set(DEV_USERS + [int(OWNER_ID)])
 
 
