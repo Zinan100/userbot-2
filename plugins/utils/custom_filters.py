@@ -10,7 +10,7 @@ from pyrogram.types import CallbackQuery, Message
 from database.disable_db import DISABLED_CMDS
 from plugins.tr_engine import tlang
 from plugins.utils.caching import ADMIN_CACHE, admin_cache_reload
-from info import BOT_USERNAME, SUDO_USERS, DEV_USERS, OWNER_ID, BOT_ID
+from info import BOT_USERNAME, SUDO_USERS, DEV_USERS, OWNER_ID, BOT_ID, PREFIX_HANDLER
 
 DEV_LEVEL = int(5164540391)
 
@@ -50,7 +50,7 @@ def command(
         if not text:
             return False
         regex = r"^[{prefix}](\w+)(@{bot_name})?(?: |$)(.*)".format(
-            prefix="|".join(escape(x) for x in Config.PREFIX_HANDLER),
+            prefix="|".join(escape(x) for x in PREFIX_HANDLER),
             bot_name=BOT_USERNAME,
         )
         matches = compile_re(regex).search(text)
