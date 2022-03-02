@@ -4,7 +4,7 @@ from pyrogram import filters, Client
 from pyrogram.errors import RPCError
 from pyrogram.types import CallbackQuery, Message
 
-from info import LOGGER, SUPPORT_STAFF
+from info import LOGGER
 from database.reporting_db import Reporting
 from plugins.utils.custom_filters import admin_filter, command
 from plugins.utils.kbhelpers import ikb
@@ -79,10 +79,6 @@ async def report_watcher(c: Client, m: Message):
 
         if reported_user.id == me.id:
             await m.reply_text("Nice try.")
-            return
-
-        if reported_user.id in SUPPORT_STAFF:
-            await m.reply_text("Uh? You reporting my support team?")
             return
 
         if m.chat.username:
