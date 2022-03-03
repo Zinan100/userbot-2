@@ -1,6 +1,7 @@
 from traceback import format_exc
 from typing import Tuple
 
+from pyrogram import Client
 from pyrogram.types.messages_and_media.message import Message
 
 from info import LOGGER
