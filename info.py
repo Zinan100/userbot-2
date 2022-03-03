@@ -45,6 +45,8 @@ SUDO_USERS = environ.get("SUDO_USERS", "5298113557")
 BOT_ID = environ.get("BOT_ID", "5144694821")
 SUPPORT_STAFF = environ.get("SUPPORT_STAFF", "5164540391")
 SUPPORT_GROUP = environ.get("SUPPORT_GROUP", "@Cliffordsupports")
+ENABLED_LOCALES = [str(i) for i in info("ENABLED_LOCALES", default="en").split()]
+
 
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "")
