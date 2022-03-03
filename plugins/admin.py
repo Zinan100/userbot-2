@@ -572,7 +572,7 @@ async def setgdes(_, m: Message):
 
 
 @Client.on_message(command("title") & admin_filter)
-async def set_user_title(c: Alita, m: Message):
+async def set_user_title(c: Client, m: Message):
 
     user = await m.chat.get_member(m.from_user.id)
     if not user.can_promote_members and user.status != "creator":
@@ -598,7 +598,7 @@ async def set_user_title(c: Alita, m: Message):
     if not user_id:
         return await m.reply_text("Cannot find user!")
 
-    if user_id == Config.BOT_ID:
+    if user_id == BOT_ID:
         return await m.reply_text("Huh, why ?")
 
     if not reason:
@@ -616,7 +616,7 @@ async def set_user_title(c: Alita, m: Message):
 
 
 @Client.on_message(command("setgpic") & admin_filter)
-async def setgpic(c: Alita, m: Message):
+async def setgpic(c: Client, m: Message):
     user = await m.chat.get_member(m.from_user.id)
     if not user.can_change_info and user.status != "creator":
         await m.reply_text(
