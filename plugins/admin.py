@@ -402,7 +402,7 @@ async def promote_usr(c: Client, m: Message):
 
 
 @Client.on_message(command("demote") & promote_filter)
-async def demote_usr(c: Alita, m: Message):
+async def demote_usr(c: Client, m: Message):
 
     global ADMIN_CACHE
 
