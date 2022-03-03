@@ -49,3 +49,4 @@ dnspython
 psycopg2-binary
 cachetools==4.2.4
 pyyaml==6.0
+prettyconf==2.2.1
