@@ -2,6 +2,7 @@ import pyrogram
 from pyrogram import Client, filters
 from pyrogram.types import User, Message
 import requests
+Import os
 
 @Client.on_message(filters.command('hand'))
 async def text(bot, message):
