@@ -169,7 +169,7 @@ async def report_buttons(c: Client, q: CallbackQuery):
             return
         except RPCError as err:
             await q.answer(
-                f"🛑 Failed to Kick\n<b>Error:</b>\n</code>{err}</code>",
+                f"🛑 Failed to Kick\n<b>Error:</b>",
                 show_alert=True,
             )
     elif action == "ban":
@@ -178,7 +178,7 @@ async def report_buttons(c: Client, q: CallbackQuery):
             await q.answer("✅ Succesfully Banned")
             return
         except RPCError as err:
-            await q.answer(f"🛑 Failed to Ban\n<b>Error:</b>\n`{err}`", show_alert=True)
+            await q.answer(f"🛑 Failed to Ban\n<b>Error:</b>", show_alert=True)
     elif action == "del":
         try:
             await c.delete_messages(chat_id, message_id)
@@ -186,7 +186,7 @@ async def report_buttons(c: Client, q: CallbackQuery):
             return
         except RPCError as err:
             await q.answer(
-                f"🛑 Failed to delete message!\n<b>Error:</b>\n`{err}`",
+                f"🛑 Failed to delete message!\n<b>Error:</b>",
                 show_alert=True,
             )
     return
