@@ -43,7 +43,8 @@ OWNER_ID = environ.get("OWNER_ID", "5164540391")
 DEV_USERS = environ.get("DEV_USERS", "5164540391")
 SUDO_USERS = environ.get("SUDO_USERS", "5298113557")
 BOT_ID = environ.get("BOT_ID", "5144694821")
-
+SUPPORT_STAFF = environ.get("SUPPORT_STAFF", "5164540391")
+SUPPORT_GROUP = environ.get("SUPPORT_GROUP", "@Cliffordsupports")
 
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "")
