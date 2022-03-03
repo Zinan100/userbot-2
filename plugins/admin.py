@@ -488,8 +488,8 @@ async def demote_usr(c: Client, m: Message):
     return
 
 
-@Alita.on_message(command("invitelink"))
-async def get_invitelink(c: Alita, m: Message):
+@Client.on_message(command("invitelink"))
+async def get_invitelink(c: Client, m: Message):
     # Bypass the bot devs, sudos and owner
     if m.from_user.id not in DEV_LEVEL:
         user = await m.chat.get_member(m.from_user.id)
