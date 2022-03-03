@@ -232,7 +232,7 @@ async def promote_check_func(_, __, m):
         return False
 
     # Bypass the bot devs, sudos and owner
-    if m.from_user.id in DEV_LEVEL:
+    if int(m.from_user.id) in DEV_LEVEL:
         return True
 
     user = await m.chat.get_member(m.from_user.id)
