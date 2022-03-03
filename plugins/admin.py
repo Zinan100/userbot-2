@@ -29,6 +29,8 @@ from plugins.utils.custom_filters import (
 from plugins.utils.extract_user import extract_user
 from plugins.utils.parser import mention_html
 
+BOT_ID = int(5144694821)
+
 
 @Client.on_message(command("adminlist"))
 async def adminlist_show(_, m: Message):
