@@ -45,7 +45,7 @@ AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_chan
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # Command
-COMMAND_HAND_LER = environ.get("COMMAND_HAND_LER", "/")
+PREFIX_HANDLER = environ.get("COMMAND_HAND_LER", "/")
 ENABLED_LOCALES = environ.get("ENABLED_LOCALES", "en")
 BOT_USERNAME = environ.get("BOT_USERNAME", "@Clifford_robot")
 OWNER_ID = environ.get("OWNER_ID", "5164540391")
