@@ -2,6 +2,8 @@ import re
 from os import environ
 from logging import WARNING, getLogger
 
+info = Configuration(loaders=[Environment(), EnvFile(filename=env_file)])
+
 getLogger("pyrogram").setLevel(WARNING)
 LOGGER = getLogger(__name__)
 
