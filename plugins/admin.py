@@ -3,7 +3,7 @@ from html import escape
 from os import remove
 from traceback import format_exc
 
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.errors import (
     ChatAdminInviteRequired,
     ChatAdminRequired,
