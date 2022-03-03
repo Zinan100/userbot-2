@@ -1,4 +1,5 @@
 import re
+from prettyconf import Configuration
 from os import environ
 from logging import WARNING, getLogger
 
