@@ -259,9 +259,7 @@ async def changeinfo_check_func(_, __, m):
     if m.sender_chat:
         return True
 
-    # Bypass the bot devs, sudos and owner
-    if m.from_user.id in DEV_LEVEL:
-        return True
+     
 
     user = await m.chat.get_member(m.from_user.id)
 
