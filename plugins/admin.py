@@ -14,25 +14,23 @@ from pyrogram.errors import (
 )
 from pyrogram.types import Message
 
-from alita import DEV_USERS, LOGGER, OWNER_ID, SUPPORT_GROUP, SUPPORT_STAFF
-from alita.bot_class import Alita
-from alita.database.approve_db import Approve
-from alita.database.reporting_db import Reporting
-from alita.tr_engine import tlang
-from alita.utils.caching import ADMIN_CACHE, TEMP_ADMIN_CACHE_BLOCK, admin_cache_reload
-from alita.utils.custom_filters import (
+from info import DEV_USERS, LOGGER, OWNER_ID, SUPPORT_GROUP, SUPPORT_STAFF
+from database.approve_db import Approve
+from database.reporting_db import Reporting
+from plugins.tr_engine import tlang
+from plugins.utils.caching import ADMIN_CACHE, TEMP_ADMIN_CACHE_BLOCK, admin_cache_reload
+from plugins.utils.custom_filters import (
     DEV_LEVEL,
     admin_filter,
     command,
     owner_filter,
     promote_filter,
 )
-from alita.utils.extract_user import extract_user
-from alita.utils.parser import mention_html
-from alita.vars import Config
+from plugins.utils.extract_user import extract_user
+from plugins.utils.parser import mention_html
 
 
-@Alita.on_message(command("adminlist"))
+@Client.on_message(command("adminlist"))
 async def adminlist_show(_, m: Message):
     global ADMIN_CACHE
     if m.chat.type != "supergroup":
@@ -101,8 +99,8 @@ async def adminlist_show(_, m: Message):
     return
 
 
-@Alita.on_message(command("zombies") & owner_filter)
-async def zombie_clean(c: Alita, m: Message):
+@Client.on_message(command("zombies") & owner_filter)
+async def zombie_clean(c: Client, m: Message):
 
     zombie = 0
 
@@ -123,7 +121,7 @@ async def zombie_clean(c: Alita, m: Message):
     )
 
 
-@Alita.on_message(command("admincache"))
+@Client.on_message(command("admincache"))
 async def reload_admins(_, m: Message):
     global TEMP_ADMIN_CACHE_BLOCK
 
@@ -157,7 +155,7 @@ async def reload_admins(_, m: Message):
     return
 
 
-@Alita.on_message(filters.regex(r"^(?i)@admin(s)?") & filters.group)
+@Client.on_message(filters.regex(r"^(?i)@admin(s)?") & filters.group)
 async def tag_admins(_, m: Message):
     db = Reporting(m.chat.id)
     if not db.get_settings():
@@ -180,8 +178,8 @@ async def tag_admins(_, m: Message):
     )
 
 
-@Alita.on_message(command("fullpromote") & promote_filter)
-async def fullpromote_usr(c: Alita, m: Message):
+@Client.on_message(command("fullpromote") & promote_filter)
+async def fullpromote_usr(c: Client, m: Message):
     global ADMIN_CACHE
 
     if len(m.text.split()) == 1 and not m.reply_to_message:
@@ -195,7 +193,7 @@ async def fullpromote_usr(c: Alita, m: Message):
 
     bot = await c.get_chat_member(m.chat.id, Config.BOT_ID)
 
-    if user_id == Config.BOT_ID:
+    if user_id == BOT_ID:
         await m.reply_text("Huh, how can I even promote myself?")
         return
 
@@ -292,8 +290,8 @@ async def fullpromote_usr(c: Alita, m: Message):
     return
 
 
-@Alita.on_message(command("promote") & promote_filter)
-async def promote_usr(c: Alita, m: Message):
+@Client.on_message(command("promote") & promote_filter)
+async def promote_usr(c: Client, m: Message):
 
     global ADMIN_CACHE
 
@@ -401,7 +399,7 @@ async def promote_usr(c: Alita, m: Message):
     return
 
 
-@Alita.on_message(command("demote") & promote_filter)
+@Client.on_message(command("demote") & promote_filter)
 async def demote_usr(c: Alita, m: Message):
 
     global ADMIN_CACHE
@@ -415,7 +413,7 @@ async def demote_usr(c: Alita, m: Message):
     except Exception:
         return
 
-    if user_id == Config.BOT_ID:
+    if user_id == BOT_ID:
         await m.reply_text("Get an admin to demote me!")
         return
 
@@ -527,7 +525,7 @@ async def get_invitelink(c: Alita, m: Message):
     return
 
 
-@Alita.on_message(command("setgtitle") & admin_filter)
+@Client.on_message(command("setgtitle") & admin_filter)
 async def setgtitle(_, m: Message):
     user = await m.chat.get_member(m.from_user.id)
 
@@ -550,7 +548,7 @@ async def setgtitle(_, m: Message):
     )
 
 
-@Alita.on_message(command("setgdes") & admin_filter)
+@Client.on_message(command("setgdes") & admin_filter)
 async def setgdes(_, m: Message):
 
     user = await m.chat.get_member(m.from_user.id)
@@ -573,7 +571,7 @@ async def setgdes(_, m: Message):
     )
 
 
-@Alita.on_message(command("title") & admin_filter)
+@Client.on_message(command("title") & admin_filter)
 async def set_user_title(c: Alita, m: Message):
 
     user = await m.chat.get_member(m.from_user.id)
@@ -617,7 +615,7 @@ async def set_user_title(c: Alita, m: Message):
     )
 
 
-@Alita.on_message(command("setgpic") & admin_filter)
+@Client.on_message(command("setgpic") & admin_filter)
 async def setgpic(c: Alita, m: Message):
     user = await m.chat.get_member(m.from_user.id)
     if not user.can_change_info and user.status != "creator":
