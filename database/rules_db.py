@@ -1,141 +1,102 @@
-from hashlib import md5
 from threading import RLock
 from time import time
 
+from info import LOGGER
 from database import MongoDB
-from plugins.utils.msg_types import Types
 
 INSERTION_LOCK = RLock()
 
 
-class Notes(MongoDB):
-    db_name = "notes"
+class Rules(MongoDB):
+    """Class for rules for chats in bot."""
 
-    def __init__(self) -> None:
+    db_name = "rules"
+
+    def __init__(self, chat_id: int) -> None:
         super().__init__(self.db_name)
+        self.chat_id = chat_id
+        self.chat_info = self.__ensure_in_db()
 
-    def save_note(
-        self,
-        chat_id: int,
-        note_name: str,
-        note_value: str,
-        msgtype: int = Types.TEXT,
-        fileid="",
-    ):
+    def get_rules(self):
         with INSERTION_LOCK:
-            curr = self.find_one(
-                {"chat_id": chat_id, "note_name": note_name},
-            )
-            if curr:
-                return False
-            hash_gen = md5(
-                (note_name + note_value + str(chat_id) + str(int(time()))).encode(),
-            ).hexdigest()
-            return self.insert_one(
-                {
-                    "chat_id": chat_id,
-                    "note_name": note_name,
-                    "note_value": note_value,
-                    "hash": hash_gen,
-                    "msgtype": msgtype,
-                    "fileid": fileid,
-                },
-            )
+            return self.chat_info["rules"]
 
-    def get_note(self, chat_id: int, note_name: str):
+    def set_rules(self, rules: str):
         with INSERTION_LOCK:
-            curr = self.find_one(
-                {"chat_id": chat_id, "note_name": note_name},
-            )
-            if curr:
-                return curr
-            return "Note does not exist!"
+            self.chat_info["rules"] = rules
+            self.update({"_id": self.chat_id}, {"rules": rules})
 
-    def get_note_by_hash(self, note_hash: str):
-        return self.find_one({"hash": note_hash})
-
-    def get_all_notes(self, chat_id: int):
+    def get_privrules(self):
         with INSERTION_LOCK:
-            curr = self.find_all({"chat_id": chat_id})
-            note_list = [(note["note_name"], note["hash"]) for note in curr]
-            note_list.sort()
-            return note_list
+            return self.chat_info["privrules"]
 
-    def rm_note(self, chat_id: int, note_name: str):
+    def set_privrules(self, privrules: bool):
         with INSERTION_LOCK:
-            curr = self.find_one(
-                {"chat_id": chat_id, "note_name": note_name},
-            )
-            if curr:
-                self.delete_one(curr)
-                return True
-            return False
+            self.chat_info["privrules"] = privrules
+            self.update({"_id": self.chat_id}, {"privrules": privrules})
 
-    def rm_all_notes(self, chat_id: int):
+    def clear_rules(self):
         with INSERTION_LOCK:
-            return self.delete_one({"chat_id": chat_id})
+            return self.delete_one({"_id": self.chat_id})
 
-    def count_notes(self, chat_id: int):
+    @staticmethod
+    def count_chats_with_rules():
         with INSERTION_LOCK:
-            curr = self.find_all({"chat_id": chat_id})
-            if curr:
-                return len(curr)
-            return 0
+            collection = MongoDB(Rules.db_name)
+            return collection.count({"rules": {"$regex": ".*"}})
 
-    def count_notes_chats(self):
+    @staticmethod
+    def count_privrules_chats():
         with INSERTION_LOCK:
-            notes = self.find_all()
-            chats_ids = [chat["chat_id"] for chat in notes]
-            return len(set(chats_ids))
+            collection = MongoDB(Rules.db_name)
+            return collection.count({"privrules": True})
 
-    def count_all_notes(self):
+    @staticmethod
+    def count_grouprules_chats():
         with INSERTION_LOCK:
-            return self.count()
+            collection = MongoDB(Rules.db_name)
+            return collection.count({"privrules": False})
 
-    def count_notes_type(self, ntype):
+    @staticmethod
+    def load_from_db():
         with INSERTION_LOCK:
-            return self.count({"msgtype": ntype})
+            collection = MongoDB(Rules.db_name)
+            return collection.find_all()
+
+    def __ensure_in_db(self):
+        chat_data = self.find_one({"_id": self.chat_id})
+        if not chat_data:
+            new_data = {"_id": self.chat_id, "privrules": False, "rules": ""}
+            self.insert_one(new_data)
+            LOGGER.info(f"Initialized Language Document for chat {self.chat_id}")
+            return new_data
+        return chat_data
 
     # Migrate if chat id changes!
-    def migrate_chat(self, old_chat_id: int, new_chat_id: int):
-        with INSERTION_LOCK:
-            old_chat_db = self.find_one({"_id": old_chat_id})
-            if old_chat_db:
-                new_data = old_chat_db.update({"_id": new_chat_id})
-                self.delete_one({"_id": old_chat_id})
-                self.insert_one(new_data)
+    def migrate_chat(self, new_chat_id: int):
+        old_chat_db = self.find_one({"_id": self.chat_id})
+        new_data = old_chat_db.update({"_id": new_chat_id})
+        self.insert_one(new_data)
+        self.delete_one({"_id": self.chat_id})
+
+    @staticmethod
+    def repair_db(collection):
+        all_data = collection.find_all()
+        keys = {"privrules": False, "rules": ""}
+        for data in all_data:
+            for key, val in keys.items():
+                try:
+                    _ = data[key]
+                except KeyError:
+                    LOGGER.warning(
+                        f"Repairing Rules Database - setting '{key}:{val}' for {data['_id']}",
+                    )
+                    collection.update({"_id": data["_id"]}, {key: val})
 
 
-class NotesSettings(MongoDB):
-    db_name = "notes_settings"
-
-    def __init__(self) -> None:
-        super().__init__(self.db_name)
-
-    def set_privatenotes(self, chat_id: int, status: bool = False):
-        curr = self.find_one({"_id": chat_id})
-        if curr:
-            return self.update({"_id": chat_id}, {"privatenotes": status})
-        return self.insert_one({"_id": chat_id, "privatenotes": status})
-
-    def get_privatenotes(self, chat_id: int):
-        curr = self.find_one({"_id": chat_id})
-        if curr:
-            return curr["privatenotes"]
-        self.update({"_id": chat_id}, {"privatenotes": False})
-        return False
-
-    def list_chats(self):
-        return self.find_all({"privatenotes": True})
-
-    def count_chats(self):
-        return len(self.find_all({"privatenotes": True}))
-
-    # Migrate if chat id changes!
-    def migrate_chat(self, old_chat_id: int, new_chat_id: int):
-        with INSERTION_LOCK:
-            old_chat_db = self.find_one({"_id": old_chat_id})
-            if old_chat_db:
-                new_data = old_chat_db.update({"_id": new_chat_id})
-                self.delete_one({"_id": old_chat_id})
-                self.insert_one(new_data)
+def __pre_req_all_rules():
+    start = time()
+    LOGGER.info("Starting Rules Database Repair...")
+    collection = MongoDB(Rules.db_name)
+    Rules.repair_db(collection)
+    LOGGER.info(f"Done in {round((time() - start), 3)}s!")
