@@ -3,7 +3,7 @@ from html import escape
 from os import remove
 from traceback import format_exc
 
-from pyrogram import filters, Client
+from pyrogram import filters
 from pyrogram.errors import (
     ChatAdminInviteRequired,
     ChatAdminRequired,
@@ -13,26 +13,25 @@ from pyrogram.errors import (
     UserAdminInvalid,
 )
 from pyrogram.types import Message
+from pyrogram import Client as Sflix
 
-from info import DEV_USERS, LOGGER, OWNER_ID, SUPPORT_GROUP, SUPPORT_STAFF
+from info import LOGGER
 from database.approve_db import Approve
 from database.reporting_db import Reporting
-from plugins.tr_engine import tlang
 from plugins.utils.caching import ADMIN_CACHE, TEMP_ADMIN_CACHE_BLOCK, admin_cache_reload
 from plugins.utils.custom_filters import (
-    DEV_LEVEL,
     admin_filter,
     command,
     owner_filter,
-    promote_filter,
+    promote_filter
 )
 from plugins.utils.extract_user import extract_user
 from plugins.utils.parser import mention_html
 
-BOT_ID = int(5144694821)
+BOT_ID = int(2080723946)
+SUPPORT_GROUP = ("TameSflix")
 
-
-@Client.on_message(command("adminlist"))
+@Sflix.on_message(command("adminlist"))
 async def adminlist_show(_, m: Message):
     global ADMIN_CACHE
     if m.chat.type != "supergroup":
@@ -42,12 +41,12 @@ async def adminlist_show(_, m: Message):
     try:
         try:
             admin_list = ADMIN_CACHE[m.chat.id]
-            note = tlang(m, "admin.adminlist.note_cached")
+            note = ("admin.adminlist.note_cached")
         except KeyError:
             admin_list = await admin_cache_reload(m, "adminlist")
-            note = tlang(m, "admin.adminlist.note_updated")
+            note = ("admin.adminlist.note_updated")
 
-        adminstr = (tlang(m, "admin.adminlist.adminstr")).format(
+        adminstr = ("admin.adminlist.adminstr").format(
             chat_title=m.chat.title,
         ) + "\n\n"
 
@@ -86,11 +85,11 @@ async def adminlist_show(_, m: Message):
 
     except Exception as ef:
         if str(ef) == str(m.chat.id):
-            await m.reply_text(tlang(m, "admin.adminlist.use_admin_cache"))
+            await m.reply_text("admin.adminlist.use_admin_cache")
         else:
             ef = str(ef) + f"{admin_list}\n"
             await m.reply_text(
-                (tlang(m, "general.some_error")).format(
+                ("general.some_error").format(
                     SUPPORT_GROUP=SUPPORT_GROUP,
                     ef=ef,
                 ),
@@ -101,29 +100,7 @@ async def adminlist_show(_, m: Message):
     return
 
 
-@Client.on_message(command("zombies") & owner_filter)
-async def zombie_clean(c: Client, m: Message):
-
-    zombie = 0
-
-    wait = await m.reply_text("Searching ... and banning ...")
-    async for member in c.iter_chat_members(m.chat.id):
-        if member.user.is_deleted:
-            zombie += 1
-            try:
-                await c.kick_chat_member(m.chat.id, member.user.id)
-            except UserAdminInvalid:
-                zombie -= 1
-            except FloodWait as e:
-                await sleep(e.x)
-    if zombie == 0:
-        return await wait.edit_text("Group is clean!")
-    return await wait.edit_text(
-        f"<b>{zombie}</b> Zombies found and has been banned!",
-    )
-
-
-@Client.on_message(command("admincache"))
+@Sflix.on_message(command("admincache"))
 async def reload_admins(_, m: Message):
     global TEMP_ADMIN_CACHE_BLOCK
 
@@ -134,7 +111,6 @@ async def reload_admins(_, m: Message):
 
     if (
         (m.chat.id in set(TEMP_ADMIN_CACHE_BLOCK.keys()))
-        and (m.from_user.id not in SUPPORT_STAFF)
         and TEMP_ADMIN_CACHE_BLOCK[m.chat.id] == "manualblock"
     ):
         await m.reply_text("Can only reload admin cache once per 10 mins!")
@@ -143,11 +119,11 @@ async def reload_admins(_, m: Message):
     try:
         await admin_cache_reload(m, "admincache")
         TEMP_ADMIN_CACHE_BLOCK[m.chat.id] = "manualblock"
-        await m.reply_text(tlang(m, "admin.adminlist.reloaded_admins"))
+        await m.reply_text("admin.adminlist.reloaded_admins")
         LOGGER.info(f"Admincache cmd use in {m.chat.id} by {m.from_user.id}")
     except RPCError as ef:
         await m.reply_text(
-            (tlang(m, "general.some_error")).format(
+            ("general.some_error").format(
                 SUPPORT_GROUP=SUPPORT_GROUP,
                 ef=ef,
             ),
@@ -157,7 +133,7 @@ async def reload_admins(_, m: Message):
     return
 
 
-@Client.on_message(filters.regex(r"^(?i)@admin(s)?") & filters.group)
+@Sflix.on_message(filters.regex(r"^(?i)@admin(s)?") & filters.group)
 async def tag_admins(_, m: Message):
     db = Reporting(m.chat.id)
     if not db.get_settings():
@@ -180,12 +156,12 @@ async def tag_admins(_, m: Message):
     )
 
 
-@Client.on_message(command("fullpromote") & promote_filter)
-async def fullpromote_usr(c: Client, m: Message):
+@Sflix.on_message(command("fullpromote") & promote_filter)
+async def fullpromote_usr(c: Sflix, m: Message):
     global ADMIN_CACHE
 
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(tlang(m, "admin.promote.no_target"))
+        await m.reply_text("admin.promote.no_target")
         return
 
     try:
@@ -205,7 +181,7 @@ async def fullpromote_usr(c: Client, m: Message):
         )  # This should be here
 
     user = await c.get_chat_member(m.chat.id, m.from_user.id)
-    if m.from_user.id not in [DEV_USERS, OWNER_ID] and user.status != "creator":
+    if m.from_user.id != "creator":
         return await m.reply_text("This command can only be used by chat owner.")
     # If user is alreay admin
     try:
@@ -252,7 +228,7 @@ async def fullpromote_usr(c: Client, m: Message):
         )
 
         await m.reply_text(
-            (tlang(m, "admin.promote.promoted_user")).format(
+            ("admin.promote.promoted_user").format(
                 promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
                 promoted=(await mention_html(user_first_name, user_id)),
                 chat_title=f"{escape(m.chat.title)} title set to {title}"
@@ -275,14 +251,14 @@ async def fullpromote_usr(c: Client, m: Message):
             await admin_cache_reload(m, "promote_key_error")
 
     except ChatAdminRequired:
-        await m.reply_text(tlang(m, "admin.not_admin"))
+        await m.reply_text("admin.not_admin")
     except RightForbidden:
-        await m.reply_text(tlang(m, "admin.promote.bot_no_right"))
+        await m.reply_text("admin.promote.bot_no_right")
     except UserAdminInvalid:
-        await m.reply_text(tlang(m, "admin.user_admin_invalid"))
+        await m.reply_text("admin.user_admin_invalid")
     except RPCError as e:
         await m.reply_text(
-            (tlang(m, "general.some_error")).format(
+            ("general.some_error").format(
                 SUPPORT_GROUP=SUPPORT_GROUP,
                 ef=e,
             ),
@@ -292,13 +268,13 @@ async def fullpromote_usr(c: Client, m: Message):
     return
 
 
-@Client.on_message(command("promote") & promote_filter)
-async def promote_usr(c: Client, m: Message):
+@Sflix.on_message(command("promote") & promote_filter)
+async def promote_usr(c: Sflix, m: Message):
 
     global ADMIN_CACHE
 
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(tlang(m, "admin.promote.no_target"))
+        await m.reply_text("admin.promote.no_target")
         return
 
     try:
@@ -306,9 +282,9 @@ async def promote_usr(c: Client, m: Message):
     except Exception:
         return
 
-    bot = await c.get_chat_member(m.chat.id, Config.BOT_ID)
+    bot = await c.get_chat_member(m.chat.id, BOT_ID)
 
-    if user_id == Config.BOT_ID:
+    if user_id == BOT_ID:
         await m.reply_text("Huh, how can I even promote myself?")
         return
 
@@ -361,7 +337,7 @@ async def promote_usr(c: Client, m: Message):
         )
 
         await m.reply_text(
-            (tlang(m, "admin.promote.promoted_user")).format(
+            ("admin.promote.promoted_user").format(
                 promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
                 promoted=(await mention_html(user_first_name, user_id)),
                 chat_title=f"{escape(m.chat.title)} title set to {title}"
@@ -384,14 +360,14 @@ async def promote_usr(c: Client, m: Message):
             await admin_cache_reload(m, "promote_key_error")
 
     except ChatAdminRequired:
-        await m.reply_text(tlang(m, "admin.not_admin"))
+        await m.reply_text("admin.not_admin")
     except RightForbidden:
-        await m.reply_text(tlang(m, "admin.promote.bot_no_right"))
+        await m.reply_text("admin.promote.bot_no_right")
     except UserAdminInvalid:
-        await m.reply_text(tlang(m, "admin.user_admin_invalid"))
+        await m.reply_text("admin.user_admin_invalid")
     except RPCError as e:
         await m.reply_text(
-            (tlang(m, "general.some_error")).format(
+            ("general.some_error").format(
                 SUPPORT_GROUP=SUPPORT_GROUP,
                 ef=e,
             ),
@@ -401,13 +377,13 @@ async def promote_usr(c: Client, m: Message):
     return
 
 
-@Client.on_message(command("demote") & promote_filter)
-async def demote_usr(c: Client, m: Message):
+@Sflix.on_message(command("demote") & promote_filter)
+async def demote_usr(c: Sflix, m: Message):
 
     global ADMIN_CACHE
 
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(tlang(m, "admin.demote.no_target"))
+        await m.reply_text("admin.demote.no_target")
         return
 
     try:
@@ -457,7 +433,7 @@ async def demote_usr(c: Client, m: Message):
             await admin_cache_reload(m, "demote_key_stopiter_error")
 
         await m.reply_text(
-            (tlang(m, "admin.demote.demoted_user")).format(
+            ("admin.demote.demoted_user").format(
                 demoter=(
                     await mention_html(
                         m.from_user.first_name,
@@ -470,14 +446,14 @@ async def demote_usr(c: Client, m: Message):
         )
 
     except ChatAdminRequired:
-        await m.reply_text(tlang(m, "admin.not_admin"))
+        await m.reply_text("admin.not_admin")
     except RightForbidden:
-        await m.reply_text(tlang(m, "admin.demote.bot_no_right"))
+        await m.reply_text("admin.demote.bot_no_right")
     except UserAdminInvalid:
-        await m.reply_text(tlang(m, "admin.user_admin_invalid"))
+        await m.reply_text("admin.user_admin_invalid")
     except RPCError as ef:
         await m.reply_text(
-            (tlang(m, "general.some_error")).format(
+            ("general.some_error").format(
                 SUPPORT_GROUP=SUPPORT_GROUP,
                 ef=ef,
             ),
@@ -488,20 +464,16 @@ async def demote_usr(c: Client, m: Message):
     return
 
 
-@Client.on_message(command("invitelink"))
-async def get_invitelink(c: Client, m: Message):
-    # Bypass the bot devs, sudos and owner
-    if m.from_user.id not in DEV_LEVEL:
-        user = await m.chat.get_member(m.from_user.id)
-
-        if not user.can_invite_users and user.status != "creator":
-            await m.reply_text(tlang(m, "admin.no_user_invite_perm"))
+@Sflix.on_message(command("invitelink"))
+async def get_invitelink(c: Sflix, m: Message):
+    if not user.can_invite_users and user.status != "creator":
+            await m.reply_text("admin.no_user_invite_perm")
             return False
 
     try:
         link = await c.export_chat_invite_link(m.chat.id)
         await m.reply_text(
-            (tlang(m, "admin.invitelink")).format(
+            ("admin.invitelink").format(
                 chat_name=m.chat.id,
                 link=link,
             ),
@@ -509,14 +481,14 @@ async def get_invitelink(c: Client, m: Message):
         )
         LOGGER.info(f"{m.from_user.id} exported invite link in {m.chat.id}")
     except ChatAdminRequired:
-        await m.reply_text(tlang(m, "admin.not_admin"))
+        await m.reply_text("admin.not_admin")
     except ChatAdminInviteRequired:
-        await m.reply_text(tlang(m, "admin.no_invite_perm"))
+        await m.reply_text("admin.no_invite_perm")
     except RightForbidden:
-        await m.reply_text(tlang(m, "admin.no_user_invite_perm"))
+        await m.reply_text("admin.no_user_invite_perm")
     except RPCError as ef:
         await m.reply_text(
-            (tlang(m, "general.some_error")).format(
+            ("general.some_error").format(
                 SUPPORT_GROUP=SUPPORT_GROUP,
                 ef=ef,
             ),
@@ -527,7 +499,7 @@ async def get_invitelink(c: Client, m: Message):
     return
 
 
-@Client.on_message(command("setgtitle") & admin_filter)
+@Sflix.on_message(command("setgtitle") & admin_filter)
 async def setgtitle(_, m: Message):
     user = await m.chat.get_member(m.from_user.id)
 
@@ -550,7 +522,7 @@ async def setgtitle(_, m: Message):
     )
 
 
-@Client.on_message(command("setgdes") & admin_filter)
+@Sflix.on_message(command("setgdes") & admin_filter)
 async def setgdes(_, m: Message):
 
     user = await m.chat.get_member(m.from_user.id)
@@ -573,8 +545,8 @@ async def setgdes(_, m: Message):
     )
 
 
-@Client.on_message(command("title") & admin_filter)
-async def set_user_title(c: Client, m: Message):
+@Sflix.on_message(command("title") & admin_filter)
+async def set_user_title(c: Sflix, m: Message):
 
     user = await m.chat.get_member(m.from_user.id)
     if not user.can_promote_members and user.status != "creator":
@@ -617,8 +589,8 @@ async def set_user_title(c: Client, m: Message):
     )
 
 
-@Client.on_message(command("setgpic") & admin_filter)
-async def setgpic(c: Client, m: Message):
+@Sflix.on_message(command("setgpic") & admin_filter)
+async def setgpic(c: Sflix, m: Message):
     user = await m.chat.get_member(m.from_user.id)
     if not user.can_change_info and user.status != "creator":
         await m.reply_text(
