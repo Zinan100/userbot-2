@@ -10,7 +10,7 @@ from logging import WARNING, getLogger
 from prettyconf.loaders import EnvFile, Environment
 
 
-Client = bot
+Client = Bot
 
 env_file = f"{getcwd()}/.env"
 info = Configuration(loaders=[Environment(), EnvFile(filename=env_file)])
