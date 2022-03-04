@@ -21,6 +21,7 @@ from plugins.utils.caching import ADMIN_CACHE, admin_cache_reload
 from plugins.utils.custom_filters import command, restrict_filter
 from plugins.utils.extract_user import extract_user
 from plugins.utils.parser import mention_html
+from plugins.tr_engine import tlang
 from plugins.utils.string import extract_time
 
 BOT_ID = int(2080723946)
