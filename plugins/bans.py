@@ -687,7 +687,7 @@ async def dban_usr(c: Sflix, m: Message):
 @Sflix.on_message(command("ban") & restrict_filter)
 async def ban_usr(c: Sflix, m: Message):
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text("admin.ban.no_target")
+        await m.reply_text("Please give me that username to ban or reply to his message")
         await m.stop_propagation()
 
     if m.reply_to_message and not m.reply_to_message.from_user:
@@ -757,12 +757,12 @@ async def ban_usr(c: Sflix, m: Message):
             "I have not seen this user yet...!\nMind forwarding one of their message so I can recognize them?",
         )
     except UserAdminInvalid:
-        await m.reply_text("admin.user_admin_invalid")
+        await m.reply_text("that is an admin")
     except RightForbidden:
-        await m.reply_text("admin.ban.bot_no_right")
+        await m.reply_text("I can't ban that user because I don't have enough permission")
     except RPCError as ef:
         await m.reply_text(
-            (tlang(m, "general.some_error")).format(
+            (tlang(m, "some error occurred!")).format(
                 SUPPORT_GROUP=SUPPORT_GROUP,
                 ef=ef,
             ),
@@ -809,7 +809,7 @@ async def kickme(_, m: Message):
         await m.chat.unban_member(m.from_user.id)
     except RPCError as ef:
         await m.reply_text(
-            ("general.some_error").format(
+            ("some error occurred!").format(
                 SUPPORT_GROUP=SUPPORT_GROUP,
                 ef=ef,
             ),
