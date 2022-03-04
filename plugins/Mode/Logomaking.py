@@ -1,6 +1,5 @@
-from pyrogram import filters
+from pyrogram import filters, Client 
 from pyrogram.types import Message
-from info import Bot
 from requests import get
 import os
 import requests
@@ -25,7 +24,7 @@ def get_text(message: Message) -> [None, str]:
         return None
 
 #logo creator
-@Bot.on_message(filters.command("logo") & ~filters.bot)
+@Client.on_message(filters.command("logo") & ~filters.bot)
 async def logo(client, message):          
     quew = get_text(message)
     if not quew:
@@ -53,7 +52,7 @@ async def logo(client, message):
         await m.delete()
 
 #hq logo creator
-@Bot.on_message(filters.command("logohq"))
+@Client.on_message(filters.command("logohq"))
 async def on_off_antiarab(client, message: Message): 
     text = message.text.split(None, 1)[1]
     m = await client.send_message(message.chat.id, "`⚙️ Creating Your logo..`")
@@ -71,7 +70,7 @@ async def on_off_antiarab(client, message: Message):
     )
     await m.delete()
 #handwrite
-@Bot.on_message(filters.command("write"))
+@Client.on_message(filters.command("write"))
 async def on_off_antiarab(client, message: Message): 
     text = message.text.split(None, 1)[1]
     m = await client.send_message(message.chat.id, "`⚙️ creating Your text..`")
@@ -94,7 +93,7 @@ async def on_off_antiarab(client, message: Message):
     )
     await m.delete()
 #wallpaper
-@Bot.on_message(filters.command("wall"))
+@Client.on_message(filters.command("wall"))
 async def on_off_antiarab(client, message: Message): 
     text = message.text.split(None, 1)[1]
     m=await client.send_message(message.chat.id, "`⚙️ Creating Your wall..`")
@@ -112,7 +111,7 @@ async def on_off_antiarab(client, message: Message):
     )
     await m.delete()
 #slogo
-@Bot.on_message(filters.command("slogo"))
+@Client.on_message(filters.command("slogo"))
 async def on_off_antiarab(client, message: Message): 
     quew = get_text(message)
     if not quew:
