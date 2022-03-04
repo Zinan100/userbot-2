@@ -3,14 +3,12 @@ from os import getcwd
 
 
 import re
-from pyrogram import Client
 from prettyconf import Configuration
 from os import environ
 from logging import WARNING, getLogger
 from prettyconf.loaders import EnvFile, Environment
 
 
-Client = Bot
 
 env_file = f"{getcwd()}/.env"
 info = Configuration(loaders=[Environment(), EnvFile(filename=env_file)])
