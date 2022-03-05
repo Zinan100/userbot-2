@@ -20,7 +20,7 @@ from plugins.utils.custom_filters import admin_filter, command, restrict_filter
 from plugins.utils.extract_user import extract_user
 from plugins.utils.parser import mention_html
 
-BOT_ID = int(2080723946)
+BOT_ID = int(5144694821)
 
 @Sflix.on_message(
     command(["warn", "swarn", "dwarn"]) & restrict_filter,
