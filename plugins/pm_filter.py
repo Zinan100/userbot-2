@@ -447,7 +447,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
                     message = query.message.reply_to_message
                     buttons = [[
-                        InlineKeyboardButton("ＤＯＷＮＬＯＡＤ", url=f"https://t.me/Phil_Files")
+                        InlineKeyboardButton("ＤＯＷＮＬＯＡＤ", url=f"{dd.link}")
                         ],[
                         InlineKeyboardButton("𝖢𝗅𝗈𝗌𝖾 🗑️", callback_data='closefilemsg')
                     ]]
@@ -1070,11 +1070,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#spell_check#{settings["spell_check"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✅ Yes' if settings["spell_check"] else '❌ No',
                                          callback_data=f'setgs#spell_check#{settings["spell_check"]}#{str(grp_id)}')
-                ],
-                [
-                    InlineKeyboardButton('Welcome', callback_data=f'setgs#welcome#{settings["welcome"]}#{str(grp_id)}'),
-                    InlineKeyboardButton('✅ Yes' if settings["welcome"] else '❌ No',
-                                         callback_data=f'setgs#welcome#{settings["welcome"]}#{str(grp_id)}')
                 ],
                 [
                     InlineKeyboardButton("𝖢𝗅𝗈𝗌𝖾 🗑️", callback_data='closesettings')
