@@ -2,8 +2,6 @@ from re import compile as compile_re
 from re import escape
 from shlex import split
 from typing import List, Union
-
-from info import PREFIX_HANDLER
 from pyrogram.errors import RPCError, UserNotParticipant
 from pyrogram.filters import create
 from pyrogram.types import CallbackQuery, Message
@@ -14,6 +12,7 @@ from plugins.utils.caching import ADMIN_CACHE, admin_cache_reload
 BOT_ID = int(5144694821)
 OWNER_ID = int(5164540391)
 
+PREFIX_HANDLER = ["/", "!", "."]
 def command(
     commands: Union[str, List[str]],
     case_sensitive: bool = False,
