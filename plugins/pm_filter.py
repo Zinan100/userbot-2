@@ -80,6 +80,9 @@ GET_FILE_CHANNLE = int(-1001636193054)
 async def give_filter(client,message):
     k = await manual_filters(client, message)
     if k == False:
+        autofltr = await get_session(int(message.chat.id))
+        if not autofltr:
+            return
         await auto_filter(client, message)
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -1079,9 +1082,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
 
 async def auto_filter(client, msg, spoll=False):
-    autofltr = await get_session(int(msg.chat.id))
-    if not autofltr:
-        return
     if not spoll:
         message = msg
         settings = await get_settings(message.chat.id)
