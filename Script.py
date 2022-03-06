@@ -192,3 +192,19 @@ Name - {}"""
 **Size:** `{file_size}`
 
 `This File will be deleted after 10 minutes!`"""
+
+
+ADMINS_GROUP_TXT = """
+
+Here is the help for the Admin module:
+
+Make it easy to promote and demote users with the admin module!
+
+User Commands:
+× /adminlist: List the admins in the current chat.
+
+Admin Commands:
+× /promote <reply/username/mention/userid>: Promote a user.
+× /demote <reply/username/mention/userid>: Demote a user.
+× /title <reply/username/mention/userid> <custom title>: Set custom title for user.
+"""
