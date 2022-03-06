@@ -229,3 +229,41 @@ Restrict Commands: (Admin only)
 × /restrict: Shows an InlineKeyboard to choose options from kick, ban and mute
 × /unrestrict: Shows an InlineKeyboard to choose options from unmute and unban.
 """
+
+WELCOME_TXT = """
+Here is the help for the Greetings module:
+
+Welcome new members to your groups or say Goodbye after they leave!
+
+Admin Commands:
+× /setwelcome <reply/text>: Sets welcome text for group.
+× /welcome <yes/no/on/off>: Enables or Disables welcome setting for group.
+× /resetwelcome: Resets the welcome message to default.
+× /setgoodbye <reply/text>: Sets goodbye text for group.
+× /goodbye <yes/no/on/off>: Enables or Disables goodbye setting for group.
+× /resetgoodbye: Resets the goodbye message to default.
+× /cleanservice <yes/no/on/off>: Delete all service messages such as 'x joined the group' notification.
+× /cleanwelcome <yes/no/on/off>: Delete the old welcome message, whenever a new member joins.
+"""
+
+   LOCK_TXT = """
+Here is the help for the Locks module:
+
+Admin only:
+× /lock <permission>: Lock Chat permission..
+× /unlock <permission>: Unlock Chat permission.
+× /locks: View Chat permission.
+× /locktypes: Check available lock types!
+
+Locks can be used to restrict a group's users.
+Locking urls will auto-delete all messages with urls, locking stickers will delete all stickers, etc.
+Locking bots will stop non-admins from adding bots to the chat.
+
+Example:
+/lock media: this locks all the media messages in the chat.
+"""
+
+
+
+
+
