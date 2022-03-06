@@ -194,7 +194,7 @@ Name - {}"""
 `This File will be deleted after 10 minutes!`"""
 
 
-ADMINS_GROUP_TXT = """
+    ADMINS_GROUP_TXT = """
 
 Here is the help for the Admin module:
 
@@ -207,4 +207,25 @@ Admin Commands:
 × /promote <reply/username/mention/userid>: Promote a user.
 × /demote <reply/username/mention/userid>: Demote a user.
 × /title <reply/username/mention/userid> <custom title>: Set custom title for user.
+"""
+
+BAN_TXT = """
+Here is the help for the Bans module:
+
+Sometimes users can be annoying and you might want to remove them from your chat, this module exactly helps you to deal with that!.
+Ban/kick usersfrom your chat, and unban them later on if they're behaving themselves.
+
+User Commands:
+× /kickme: kicks the user who issued the command.
+
+Ban Commands (Admin only):
+× /ban <userhandle>: bans a user. (via handle, or reply)
+× /sban <userhandle>: bans a user silently, does not send message to group and also deletes your command. (via handle, or reply)
+× /dban <userhandle>: bans a user and delete the replied message. (via handle, or reply)
+× /tban <userhandle> x(m/h/d): bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
+× /unban <userhandle>: unbans a user. (via handle, or reply)
+
+Restrict Commands: (Admin only)
+× /restrict: Shows an InlineKeyboard to choose options from kick, ban and mute
+× /unrestrict: Shows an InlineKeyboard to choose options from unmute and unban.
 """
