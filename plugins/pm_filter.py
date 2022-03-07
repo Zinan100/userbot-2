@@ -1,5 +1,4 @@
 #kanged from Eva maria 
-Import hi
 import asyncio
 import re
 import ast
