@@ -3,7 +3,6 @@ tgcrypto
 pymongo[srv]==3.12.3
 motor==2.5.1
 marshmallow==3.14.1
-regex==2021.11.10
 umongo==3.0.1
 requests==2.25.1
 telegraph==1.4.1
@@ -51,3 +50,4 @@ psycopg2-binary
 cachetools==4.2.4
 pyyaml==6.0
 prettyconf==2.2.1
+regex==2021.11.10
