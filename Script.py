@@ -246,7 +246,7 @@ Admin Commands:
 × /cleanwelcome <yes/no/on/off>: Delete the old welcome message, whenever a new member joins.
 """
 
-   LOCK_TXT = """
+LOCK_TXT = """
 Here is the help for the Locks module:
 
 Admin only:
