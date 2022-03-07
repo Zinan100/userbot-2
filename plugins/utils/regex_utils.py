@@ -2,7 +2,7 @@ from traceback import format_exc
 
 from regex import search
 
-from alita import LOGGER
+from info import LOGGER
 
 
 async def regex_searcher(regex_string: str, string: str) -> str:
