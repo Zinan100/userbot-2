@@ -1,5 +1,5 @@
+/bin/sh -c pip3 install -U pip && pip3 install -U -r requirements.txt
 pyrogram==1.4.1
-okteto stack deploy --build -f docker-compose.yml
 tgcrypto
 pymongo[srv]==3.12.3
 motor==2.5.1
