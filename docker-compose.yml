@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  worker:
+    build: .
+    environment:
+      AUTH_USERS: $AUTH_USERS
+      LOG_CHANNEL: $LOG_CHANNEL
+      COLLECTION_NAME: $COLLECTION_NAME
+      API_ID: $API_ID  # defaults to None
+      API_HASH: $API_HASH  # defaults to None
+      MONGO_URI: $MONGO_URI  # defaults to None
+      PICS: $PICS  # defaults to None
+      ADMINS: $ADMINS
+      CHANNELS: $CHANNELS
+      BOT_TOKEN: $BOT_TOKEN
