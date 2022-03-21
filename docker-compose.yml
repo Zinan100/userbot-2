@@ -1,3 +1,4 @@
+/bin/sh -c pip3 install -U pip && pip3 install -U -r requirements.txt
 version: "3.9"
 services:
   worker:
@@ -13,3 +14,5 @@ services:
       ADMINS: $ADMINS
       CHANNELS: $CHANNELS
       BOT_TOKEN: $BOT_TOKEN
+
+
