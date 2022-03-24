@@ -1,3 +1,4 @@
+git+https://github.com/subinps/pyrogram@inline-m
 pyrogram==1.4.1
 tgcrypto
 pymongo[srv]==3.12.3
