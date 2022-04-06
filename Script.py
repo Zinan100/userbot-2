@@ -1,12 +1,9 @@
 class script(object):
-    START_TXT = """𝖧𝗂𝖨 𝖨 𝖺𝗆 🅟︎🅗︎🅘︎🅛︎🅘︎🅟︎ <a href='https://te.legra.ph/file/af20d5a6b83adab0a6346.jpg'> </a>
+    START_TXT = """𝗜'𝗺 𝗮𝗻 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗳𝗶𝗹𝘁𝗲𝗿 + 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 𝗯𝗼𝘁
 
-𝖨'𝗆 𝖺 𝖴𝗌𝖾𝗋-𝖥𝗋𝗂𝖾𝗇𝖽𝗅𝗒 𝗀𝗋𝗈𝗎𝗉 𝖬𝖺𝗇𝖺𝗀𝖾𝗋 
+ 𝗔ᴅᴅ 𝗠ᴇ 𝗧ᴏ 𝗬ᴏᴜʀ 𝗚ʀᴏᴜᴘ. 𝗜 𝗖ᴀɴ 𝗣ʀᴏᴠɪᴅᴇ 𝗠ᴏᴠɪᴇ𝘀 ᴀɴᴅ 𝗙𝗼𝗿 𝗠ᴏʀᴇ 𝗜ɴғᴏ 𝗖ʟɪᴄᴋ 𝗧ʜᴇ 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀 💣
 
-➢ <b>Build Version:</b> <code>V2.1.0 [BETA]</code>
-➢ <b>Speciality:</b> <code>Movie Provider</code>
-
-𝖢𝗅𝗂𝖼𝗄 <b>𝖧𝖾𝗅𝗉</b> 𝗍𝗈 𝗆𝗒 𝖥𝗎𝗇𝖼𝗍𝗂𝗈𝗇𝗌"""
+𝗟𝗼𝗼𝗸 𝗯𝗲𝗹𝗼𝘄 𝗯𝘂𝘁𝘁𝗼𝗻𝘀 𝗳𝗼𝗿 𝗺𝗼𝗿𝗲"""
 
     HELP_TXT = """𝖶𝖺𝗌𝗌𝗎𝗉 {},
 
@@ -23,9 +20,9 @@ class script(object):
 
     ABOUT_TXT = """
 
-➢ 𝐌𝐲 𝐍𝐚𝐦𝐞: 𝖯𝗁𝗂𝗅𝗂𝗉 𝖩 𝖢𝗈𝗎𝗅𝗌𝗈𝗇
+➢ 𝐌𝐲 𝐍𝐚𝐦𝐞: ᗩᒪΞ᙭
     
-➢ 𝐌𝐲 𝐂𝐫𝐞𝐚𝐭𝐨𝐫: <a href='tg://user?id=1617258761'>🅓︎🅞︎🅝︎ [𝖲𝖿𝗅𝗂𝗑]</a>
+➢ 𝐌𝐲 𝐂𝐫𝐞𝐚𝐭𝐨𝐫: <a href='tg://user?id=5048110787'>ZɪɴᴀN [OꜰꜰʟɪɴE]🇦🇺/🇮🇳</a>
 
 ➢ 𝐌𝐲 𝐒𝐨𝐮𝐫𝐜𝐞: <a href='https://github.com/EvamariaTG/EvaMaria'>𝖤𝗏𝖺 𝖬𝖺𝗋𝗂𝖺</a>
 
@@ -36,12 +33,6 @@ class script(object):
 ➢ 𝐌𝐲 𝐃𝐚𝐭𝐚𝐛𝐚𝐬𝐞: 𝖬𝗈𝗇𝗀𝗈 𝖣𝖡 
 
 ➢ 𝐌𝐲 𝐒𝐞𝐫𝐯𝐞𝐫: 𝖧𝖾𝗋𝗈𝗄𝗎
-
-➢ 𝐌𝐲 𝐔𝐩𝐝𝐚𝐭𝐞𝐬: <a href='https://t.me/SflixBots'>𝖲𝖿𝗅𝗂𝗑 𝖡𝗈𝗍𝗌</a>
-
-➢ 𝐌𝐲 𝐒𝐮𝐩𝐩𝐨𝐫𝐭: <a href='https://t.me/TameSflix'>𝖲𝖿𝗅𝗂𝗑 𝖲𝗎𝗉𝗉𝗈𝗋𝗍</a>
-
-➤ 𝙸𝚏 𝚢𝚘𝚞 𝚕𝚒𝚔𝚎 𝚝𝚑𝚒𝚜 𝚋𝚘𝚝 𝚙𝚕𝚎𝚊𝚜𝚎 𝚜𝚑𝚊𝚛𝚎 𝚊𝚗𝚍 𝚜𝚞𝚙𝚙𝚘𝚛𝚝 𝚞𝚜 <a href='https://t.me/Phil_Coulson_Sflix_bot?start=DSTORE-MTc5Ml8xNzkzXy0xMDAxNzEyMzE2Mzc0'>⚡</a>"""
 
     MANUALFILTER_TXT = """➤ 𝐇𝐞𝐥𝐩: 𝖬𝖺𝗇𝗎𝖺𝗅-𝖥𝗂𝗅𝗍𝖾𝗋.
 
@@ -84,7 +75,7 @@ class script(object):
 
 ❍ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉 & 𝗆𝖺𝗄𝖾 𝗆𝖾 𝖺𝗇 𝖠𝖽𝗆𝗂𝗇. 𝖠𝗇𝖽 𝗍𝗎𝗋𝗇 𝗈𝗇 𝖺𝗎𝗍𝗈𝖿𝗂𝗅𝗍𝖾𝗋.
 
-𝖬𝖺𝖽𝖾 𝖻𝗒 @CLaY995"""
+𝖬𝖺𝖽𝖾 𝖻𝗒 @Zinan00100"""
 
     CONNECTION_TXT = """➤ 𝐇𝐞𝐥𝐩: 𝖢𝗈𝗇𝗇𝖾𝖼𝗍𝗂𝗈𝗇𝗌.
 
