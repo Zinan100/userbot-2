@@ -23,7 +23,7 @@ BATCH_FILES = {}
 async def start(client, message):
     if message.chat.type in ['group', 'supergroup']:
         buttons = [[
-            InlineKeyboardButton('©️ 𝖴𝗉𝖽𝖺𝗍𝖾𝗌', url='https://t.me/SflixBots'),
+            InlineKeyboardButton('©️ 𝖴𝗉𝖽𝖺𝗍𝖾𝗌', url='https://t.me/moviespot00100'),
             InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', url=f"https://t.me/{temp.U_NAME}?start=help")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -39,10 +39,13 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Clifford_robot?startgroup=true')
+            InlineKeyboardButton('⚚ ΛᎠᎠ MΞ ϮԾ YԾUᏒ GᏒԾUᎮ ⚚', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
-            InlineKeyboardButton('🔍 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='help')
+            InlineKeyboardButton('💠 ႺᖇOUᑭ 💠', url='https://t.me/moviespot001100'),
+            InlineKeyboardButton('💠 UᑭDΛTΞS 💠', url='https://t.me/moviespot00100')
+            ],[      
+            InlineKeyboardButton('♻️ HΞLᎮ ♻️', callback_data='help'),
+            InlineKeyboardButton('♻️ ΛBOUT ♻️', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_text(
@@ -77,10 +80,13 @@ async def start(client, message):
         return
     if len(message.command) ==2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-            InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Phil_Coulson_Sflix_bot?startgroup=true')
+            InlineKeyboardButton('⚚ ΛᎠᎠ MΞ ϮԾ YԾUᏒ GᏒԾUᎮ ⚚', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
-            InlineKeyboardButton('🔍 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='help')
+            InlineKeyboardButton('💠 ႺᖇOUᑭ 💠', url='https://t.me/moviespot001100'),
+            InlineKeyboardButton('💠 UᑭDΛTΞS 💠', url='https://t.me/moviespot00100')
+            ],[      
+            InlineKeyboardButton('♻️ HΞLᎮ ♻️', callback_data='help'),
+            InlineKeyboardButton('♻️ ΛBOUT ♻️', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_text(
