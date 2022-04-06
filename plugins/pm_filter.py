@@ -734,10 +734,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('➕ 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕', url='http://t.me/Phil_Coulson_Sflix_bot?startgroup=true')
+            InlineKeyboardButton('⚚ ΛᎠᎠ MΞ ϮԾ YԾUᏒ GᏒԾUᎮ ⚚', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
-            InlineKeyboardButton('🔍 𝖲𝖾𝖺𝗋𝖼𝗁', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝖧𝖾𝗅𝗉 💭', callback_data='helpp')
+            InlineKeyboardButton('💠 ႺᖇOUᑭ 💠', url='https://t.me/moviespot001100'),
+            InlineKeyboardButton('💠 UᑭDΛTΞS 💠', url='https://t.me/moviespot00100')
+            ],[      
+            InlineKeyboardButton('♻️ HΞLᎮ ♻️', callback_data='help'),
+            InlineKeyboardButton('♻️ ΛBOUT ♻️', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -864,7 +867,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
-            InlineKeyboardButton('𝖦𝗂𝗍𝖧𝗎𝖻', url='https://github.com/SflixBots'),
+            InlineKeyboardButton('𝖦𝗂𝗍𝖧𝗎𝖻', url='https://github.com/Zinan100'),
             InlineKeyboardButton("𝖲𝗍𝖺𝗍𝗎𝗌", callback_data='stats'),
             InlineKeyboardButton('𝖢𝗅𝗈𝗌𝖾', callback_data='close_data')
         ]]
