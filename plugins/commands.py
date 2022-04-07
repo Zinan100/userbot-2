@@ -45,8 +45,7 @@ async def start(client, message):
             InlineKeyboardButton('⚙️ Hᴇʟᴩ⚙️', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
-        await message.reply_chat_action("Typing")
-        m=await message.reply_sticker("CAACAgUAAxkBAAIscGI_NIFP4RCJvnzCmKNYrL0P76aPAAIEAAPBJDExieUdbguzyBAeBA") 
+        await message.reply_chat_action("Typing") 
         await asyncio.sleep(1)
         await m.delete()
         await message.reply_photo(
@@ -89,8 +88,7 @@ async def start(client, message):
             InlineKeyboardButton('⚙️ Hᴇʟᴩ⚙️', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
-        await message.reply_chat_action("Typing")
-        m=await message.reply_sticker("CAACAgUAAxkBAAIscGI_NIFP4RCJvnzCmKNYrL0P76aPAAIEAAPBJDExieUdbguzyBAeBA") 
+        await message.reply_chat_action("Typing") 
         await asyncio.sleep(1)
         await m.delete()
         await message.reply_photo(
