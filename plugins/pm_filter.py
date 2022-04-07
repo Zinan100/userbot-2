@@ -737,7 +737,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('Cʜᴀɴɴᴇʟ', url='https://t.me/AIOM_BOTS'),
             InlineKeyboardButton('Gʀᴏᴜᴩ', url='https://t.me/AIOM_BOTS_GROUP')
             ],[      
-            InlineKeyboardButton('⚙️ Hᴇʟᴩ⚙️', callback_data='help')
+            InlineKeyboardButton('⚙️ Hᴇʟᴩ⚙️', callback_data='helpp')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
