@@ -734,13 +734,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('⚚ ΛᎠᎠ MΞ ϮԾ YԾUᏒ GᏒԾUᎮ ⚚', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('💠 ႺᖇOUᑭ 💠', url='https://t.me/moviespot001100'),
-            InlineKeyboardButton('💠 UᑭDΛTΞS 💠', url='https://t.me/moviespot00100')
+            InlineKeyboardButton('Cʜᴀɴɴᴇʟ', url='https://t.me/AIOM_BOTS'),
+            InlineKeyboardButton('Gʀᴏᴜᴩ', url='https://t.me/AIOM_BOTS_GROUP')
             ],[      
-            InlineKeyboardButton('♻️ HΞLᎮ ♻️', callback_data='help'),
-            InlineKeyboardButton('♻️ ΛBOUT ♻️', callback_data='about')
+            InlineKeyboardButton('⚙️ Hᴇʟᴩ⚙️', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -924,7 +921,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "auto_manual":
         buttons = [[
-            InlineKeyboardButton('𝖠𝗎𝗍𝗈', callback_data='autofilte'),
+            InlineKeyboardButton('𝖠𝗎𝗍𝗈', callback_data='autofilter'),
             InlineKeyboardButton('𝖬𝖺𝗇𝗎𝗅𝖺', callback_data='manualfilter')
             ],[
             InlineKeyboardButton('🔙 𝖡𝖺𝖼𝗄', callback_data='help')
