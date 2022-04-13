@@ -42,12 +42,11 @@ async def start(client, message):
             InlineKeyboardButton('Cʜᴀɴɴᴇʟ', url='https://t.me/AIOM_BOTS'),
             InlineKeyboardButton('Gʀᴏᴜᴩ', url='https://t.me/AIOM_BOTS_GROUP')
             ],[      
-            InlineKeyboardButton('⚙️ Hᴇʟᴩ⚙️', callback_data='help')
+            InlineKeyboardButton('Hᴇʟᴩ', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)        
         await message.reply_chat_action("Typing") 
-        await asyncio.sleep(1)
-        await m.delete()
+        await asyncio.sleep(3)
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
